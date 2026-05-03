@@ -1,301 +1,1022 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Personal HTML-5 Template </title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="manifest" href="site.webmanifest">
-		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Munish Taya — 5G NR Systems Engineer at Apple</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-		<!-- CSS here -->
-            <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-            <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-            <link rel="stylesheet" href="assets/css/slicknav.css">
-            <link rel="stylesheet" href="assets/css/flaticon.css">
-            <link rel="stylesheet" href="assets/css/animate.min.css">
-            <link rel="stylesheet" href="assets/css/magnific-popup.css">
-            <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-            <link rel="stylesheet" href="assets/css/themify-icons.css">
-            <link rel="stylesheet" href="assets/css/slick.css">
-            <link rel="stylesheet" href="assets/css/nice-select.css">
-            <link rel="stylesheet" href="assets/css/style.css">
-   </head>
+    :root {
+      --bg:      #080c14;
+      --bg2:     #0d1321;
+      --surface: rgba(255,255,255,0.04);
+      --surfhov: rgba(255,255,255,0.07);
+      --border:  rgba(255,255,255,0.08);
+      --text:    #e2e8f0;
+      --muted:   #64748b;
+      --subtle:  #94a3b8;
+      --ga:      #6366f1;
+      --gb:      #06b6d4;
+    }
 
-   <body>
-    <!-- Removing preloader 
-    Preloader Start
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/loder.jpg" alt="">
-                </div>
-            </div>
-        </div>
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; }
+
+    .grad-text {
+      background: linear-gradient(135deg, var(--ga), var(--gb));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.on { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.10s; }
+    .d2 { transition-delay: 0.20s; }
+    .d3 { transition-delay: 0.30s; }
+    .d4 { transition-delay: 0.40s; }
+
+    /* ══ NAVBAR ══ */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 2rem;
+      transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+    #nav.solid { background: rgba(8,12,20,0.9); backdrop-filter: blur(18px); border-color: var(--border); }
+    .nav-logo { font-weight: 900; font-size: 1.2rem; letter-spacing: -0.03em; color: var(--text); }
+    .nav-logo span { background: linear-gradient(135deg,var(--ga),var(--gb)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links { display: flex; gap: 0.1rem; list-style: none; }
+    .nav-links a { padding: 0.4rem 0.85rem; color: var(--muted); font-size: 0.82rem; font-weight: 500; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+    .nav-links a:hover { color: var(--text); background: var(--surface); }
+
+    /* ══ HERO ══ */
+    #hero { min-height: 100vh; display: flex; align-items: center; padding: 7rem 2rem 4rem; position: relative; overflow: hidden; }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(99,102,241,0.06) 1px,transparent 1px), linear-gradient(90deg,rgba(99,102,241,0.06) 1px,transparent 1px);
+      background-size: 55px 55px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+    }
+    .orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(80px); }
+    .orb-a { width: 500px; height: 500px; background: radial-gradient(circle,rgba(99,102,241,0.18) 0%,transparent 70%); top: -80px; right: 5%; }
+    .orb-b { width: 350px; height: 350px; background: radial-gradient(circle,rgba(6,182,212,0.12) 0%,transparent 70%); bottom: 5%; left: 5%; }
+
+    .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+    .hero-greeting { font-size: 1rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gb); margin-bottom: 0.75rem; }
+    .hero-name { font-size: clamp(3.2rem,7vw,5.8rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.0; margin-bottom: 1.25rem; }
+    .hero-type { font-size: clamp(1.05rem,2.2vw,1.35rem); color: var(--subtle); margin-bottom: 1.5rem; min-height: 2em; }
+    .cursor { display: inline-block; width: 2px; height: 1.1em; background: var(--ga); margin-left: 2px; vertical-align: middle; animation: blink 1s step-end infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .hero-bio { color: var(--subtle); font-size: 1.05rem; max-width: 500px; line-height: 1.8; margin-bottom: 2.25rem; }
+    .hero-bio strong { color: var(--text); font-weight: 600; }
+    .ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-fill { padding: 0.85rem 2rem; background: linear-gradient(135deg,var(--ga),var(--gb)); color: #fff; border-radius: 50px; font-weight: 700; font-size: 0.95rem; transition: opacity 0.2s, transform 0.2s; display: inline-block; }
+    .btn-fill:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-out { padding: 0.85rem 2rem; border: 1px solid var(--border); color: var(--text); border-radius: 50px; font-weight: 500; font-size: 0.95rem; background: var(--surface); transition: border-color 0.2s, background 0.2s, transform 0.2s; display: inline-block; }
+    .btn-out:hover { border-color: var(--ga); background: var(--surfhov); transform: translateY(-2px); }
+    .photo-wrap { position: relative; flex-shrink: 0; width: 220px; height: 220px; }
+    .photo-wrap::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: linear-gradient(135deg,var(--ga),var(--gb)); z-index: 0; }
+    .photo-wrap::after { content: ''; position: absolute; inset: -22px; border-radius: 50%; background: radial-gradient(circle,rgba(99,102,241,0.22) 0%,transparent 70%); z-index: -1; }
+    .photo-wrap img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; position: relative; z-index: 1; border: 4px solid var(--bg); }
+
+    /* ══ STATS ══ */
+    #stats { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 2rem; }
+    .stats-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(5,1fr); gap: 1rem; text-align: center; }
+    .stat-num { font-size: 2.6rem; font-weight: 900; line-height: 1; background: linear-gradient(135deg,var(--ga),var(--gb)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-lbl { color: var(--muted); font-size: 0.78rem; margin-top: 0.4rem; }
+
+    /* ══ SECTION BASE ══ */
+    .sec { padding: 5.5rem 2rem; }
+    .sec-inner { max-width: 960px; margin: 0 auto; }
+    .sec-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gb); margin-bottom: 0.5rem; }
+    .sec-title { font-size: clamp(1.9rem,4.5vw,2.6rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1rem; }
+    .sec-sub { color: var(--subtle); max-width: 560px; margin-bottom: 3rem; font-size: 1rem; }
+
+    /* ══ ABOUT ══ */
+    #about { background: var(--bg); }
+    .quote-block {
+      border-left: 3px solid var(--ga);
+      padding: 1.25rem 1.75rem;
+      margin-bottom: 2.5rem;
+      background: rgba(99,102,241,0.05);
+      border-radius: 0 12px 12px 0;
+    }
+    .quote-block p { font-size: 1.1rem; font-style: italic; color: var(--subtle); line-height: 1.75; }
+    .quote-block cite { display: block; margin-top: 0.6rem; font-size: 0.82rem; color: var(--muted); font-style: normal; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
+    .about-text p { color: var(--subtle); font-size: 1.02rem; line-height: 1.85; margin-bottom: 1rem; }
+    .about-text p strong { color: var(--text); font-weight: 600; }
+    .pillars { display: flex; flex-direction: column; gap: 1rem; }
+    .pillar { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.3rem 1.5rem; transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+    .pillar:hover { background: var(--surfhov); border-color: rgba(99,102,241,0.3); transform: translateX(5px); }
+    .pillar-icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .pillar h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .pillar p { font-size: 0.84rem; color: var(--muted); line-height: 1.55; }
+
+    /* ══ EXPERIENCE — Timeline ══ */
+    #experience { background: var(--bg2); }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 2px; background: linear-gradient(to bottom,var(--ga),var(--gb),transparent); }
+    .tl-item { position: relative; margin-bottom: 2rem; }
+    .tl-dot { position: absolute; left: -2.47rem; top: 10px; width: 13px; height: 13px; border-radius: 50%; background: linear-gradient(135deg,var(--ga),var(--gb)); border: 2px solid var(--bg2); box-shadow: 0 0 10px rgba(99,102,241,0.5); }
+    .tl-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem 1.75rem; transition: background 0.2s, border-color 0.2s; }
+    .tl-card:hover { background: var(--surfhov); border-color: rgba(99,102,241,0.25); }
+    .tl-head { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem; }
+    .tl-company { font-size: 1rem; font-weight: 700; }
+    .tl-role { font-size: 0.84rem; color: var(--gb); margin-top: 0.15rem; font-weight: 500; }
+    .tl-date { font-size: 0.76rem; color: var(--muted); background: var(--surface); border: 1px solid var(--border); padding: 0.28rem 0.75rem; border-radius: 99px; white-space: nowrap; }
+    .tl-card ul { list-style: none; }
+    .tl-card ul li { font-size: 0.88rem; color: var(--subtle); padding: 0.28rem 0 0.28rem 1.3rem; position: relative; }
+    .tl-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--ga); font-size: 0.78rem; top: 0.32rem; }
+    .tl-promo { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #4ade80; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.2); padding: 0.2rem 0.6rem; border-radius: 4px; margin-left: 0.5rem; vertical-align: middle; }
+
+    /* ══ SKILLS ══ */
+    #skills { background: var(--bg); }
+    .skill-groups { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1.5rem; }
+    .skill-group { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; transition: border-color 0.2s, transform 0.2s; }
+    .skill-group:hover { border-color: rgba(99,102,241,0.3); transform: translateY(-3px); }
+    .sg-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gb); margin-bottom: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag { font-size: 0.82rem; padding: 0.28rem 0.75rem; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.18); color: #a5b4fc; border-radius: 99px; font-weight: 500; transition: background 0.2s, transform 0.15s; cursor: default; }
+    .tag:hover { background: rgba(99,102,241,0.22); transform: translateY(-2px); }
+
+    /* ══ CERTIFICATIONS ══ */
+    #certifications { background: var(--bg2); }
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 1.25rem; }
+    .cert-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.4rem 1.5rem; display: flex; gap: 1rem; align-items: flex-start; transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+    .cert-card:hover { background: var(--surfhov); border-color: rgba(99,102,241,0.3); transform: translateY(-3px); }
+    .cert-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .cert-card h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.2rem; line-height: 1.4; }
+    .cert-card p { font-size: 0.78rem; color: var(--muted); }
+
+    /* ══ RESEARCH ══ */
+    #research { background: var(--bg2); }
+    .research-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 1.5rem; }
+    .r-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+    .r-card:hover { background: var(--surfhov); border-color: rgba(6,182,212,0.3); transform: translateY(-4px); }
+    .badge { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gb); background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.2); padding: 0.2rem 0.65rem; border-radius: 5px; margin-bottom: 0.9rem; }
+    .r-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .r-card .org { font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem; }
+    .r-card ul { list-style: none; }
+    .r-card ul li { font-size: 0.86rem; color: var(--subtle); padding: 0.25rem 0 0.25rem 1.2rem; position: relative; }
+    .r-card ul li::before { content: '·'; position: absolute; left: 0.3rem; color: var(--gb); font-size: 1.1rem; line-height: 1.35; }
+
+    /* ══ PROJECTS ══ */
+    #projects { background: var(--bg); }
+    #undergrad-projects { background: var(--bg2); }
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 1.5rem; }
+    .proj-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; position: relative; overflow: hidden; transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+    .proj-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg,var(--ga),var(--gb)); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease; }
+    .proj-card:hover::before { transform: scaleX(1); }
+    .proj-card:hover { background: var(--surfhov); border-color: rgba(99,102,241,0.25); transform: translateY(-5px); }
+    .proj-num { font-size: 3.2rem; font-weight: 900; line-height: 1; background: linear-gradient(135deg,var(--ga),var(--gb)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.25; margin-bottom: 0.75rem; }
+    .proj-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .proj-org { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; }
+    .proj-card ul { list-style: none; }
+    .proj-card ul li { font-size: 0.86rem; color: var(--subtle); padding: 0.25rem 0 0.25rem 1.2rem; position: relative; }
+    .proj-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--ga); font-size: 0.78rem; top: 0.3rem; }
+    .proj-award { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; font-weight: 700; color: #fbbf24; background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.2); padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; }
+
+    /* ══ PUBLICATIONS ══ */
+    #publications { background: var(--bg); }
+    .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .pub-card { background: linear-gradient(135deg,rgba(99,102,241,0.07),rgba(6,182,212,0.07)); border: 1px solid rgba(99,102,241,0.2); border-radius: 18px; padding: 2rem 2.5rem; display: flex; gap: 2rem; align-items: flex-start; transition: border-color 0.2s, transform 0.2s; }
+    .pub-card:hover { border-color: rgba(99,102,241,0.35); transform: translateY(-2px); }
+    .pub-icon { font-size: 2rem; flex-shrink: 0; }
+    .pub-badge { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gb); background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.22); padding: 0.2rem 0.65rem; border-radius: 5px; margin-bottom: 0.75rem; }
+    .pub-card h3 { font-size: 1.05rem; font-weight: 700; line-height: 1.55; margin-bottom: 0.5rem; }
+    .pub-card p { color: var(--subtle); font-size: 0.88rem; line-height: 1.65; }
+    .pub-card em { color: var(--gb); font-style: italic; }
+    .pub-citations { display: inline-block; font-size: 0.75rem; color: #4ade80; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.2); padding: 0.15rem 0.55rem; border-radius: 4px; margin-top: 0.5rem; }
+
+    /* ══ CONTACT ══ */
+    #contact { background: var(--bg2); padding: 5.5rem 2rem 4rem; text-align: center; }
+    .contact-inner { max-width: 580px; margin: 0 auto; }
+    .contact-inner p { color: var(--subtle); margin-bottom: 2.5rem; font-size: 1.05rem; line-height: 1.75; }
+    .chips { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+    .chip { display: flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.35rem; background: var(--surface); border: 1px solid var(--border); border-radius: 50px; color: var(--text); font-size: 0.88rem; transition: border-color 0.2s, background 0.2s, transform 0.2s; }
+    .chip:hover { border-color: var(--ga); background: var(--surfhov); transform: translateY(-2px); }
+    .chip svg { flex-shrink: 0; }
+    .foot { border-top: 1px solid var(--border); padding-top: 1.5rem; color: var(--muted); font-size: 0.8rem; }
+
+    /* ══ BEYOND ══ */
+    #beyond { background: var(--bg); }
+    .personal-intro {
+      background: linear-gradient(135deg, rgba(99,102,241,0.07), rgba(6,182,212,0.07));
+      border: 1px solid rgba(99,102,241,0.15);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+      color: var(--subtle);
+      line-height: 1.85;
+    }
+    .personal-intro strong { color: var(--text); font-weight: 600; }
+
+    /* Photo mosaic */
+    .photo-mosaic {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+    .photo-item {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: default;
+      aspect-ratio: 3/4;
+    }
+    .photo-item.wide  { grid-column: span 2; aspect-ratio: 16/9; }
+    .photo-item.tall  { grid-row: span 2; aspect-ratio: unset; }
+    .photo-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .photo-item:hover img { transform: scale(1.05); }
+    .photo-caption {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,12,20,0.85) 0%, transparent 55%);
+      display: flex; align-items: flex-end;
+      padding: 1rem 1.1rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .photo-item:hover .photo-caption { opacity: 1; }
+    .photo-caption span {
+      font-size: 0.82rem; font-weight: 600;
+      color: #fff; line-height: 1.3;
+    }
+
+    /* Interest / vibe cards */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+    .interest-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .interest-card:hover { background: var(--surfhov); border-color: rgba(99,102,241,0.3); transform: translateY(-4px); }
+    .interest-card .i-icon { font-size: 2.2rem; margin-bottom: 0.75rem; display: block; }
+    .interest-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .interest-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: repeat(3,1fr); }
+    }
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .photo-wrap { display: none; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .pub-card { flex-direction: column; gap: 1rem; padding: 1.5rem; }
+      .photo-mosaic { grid-template-columns: repeat(2,1fr); }
+      .photo-item.wide { grid-column: span 2; }
+      .photo-item.tall { grid-row: span 1; }
+    }
+    @media (max-width: 480px) {
+      .photo-mosaic { grid-template-columns: 1fr; }
+      .photo-item.wide { grid-column: span 1; aspect-ratio: 3/4; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">MT<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#beyond">Beyond</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="hero-inner">
+    <div>
+      <p class="hero-greeting reveal">Hi there, I'm</p>
+      <h1 class="hero-name reveal d1">Munish<br /><span class="grad-text">Taya.</span></h1>
+      <div class="hero-type reveal d2"><span id="typed"></span><span class="cursor"></span></div>
+      <p class="hero-bio reveal d3">
+        I find beauty in the <strong>mathematics of wireless signals</strong>. From underwater acoustic channels to automotive radar to RF transceivers — and now shaping <strong>5G NR systems at Apple</strong>. I turn complex signal theory into technology that billions of people rely on every day.
+      </p>
+      <div class="ctas reveal d3">
+        <a href="doc/mTayaResume.pdf" class="btn-fill" target="_blank" rel="noopener">Download Resume</a>
+        <a href="#contact" class="btn-out">Get in touch</a>
+      </div>
     </div>
-    Preloader End
-    -->
-    <header>
-        <!-- Header Start -->
-        <div class="header-area">
-                <div class="main-header  header-sticky">
-                    <div class="container-fluid">
-                        <div class="row align-items-center">
-                            <!-- Logo -->
-                            <div class="col-xl-2 col-lg-2 col-md-1">
-                                <div class="logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                                </div>
-                            </div>
-                            <div class="col-xl-10 col-lg-10 col-md-10">
-                                <div class="menu-main d-flex align-items-center justify-content-end">
-                                    <!-- Main-menu -->
-                                    <div class="main-menu f-right d-none d-lg-block">
-                                        <nav> 
-                                            <ul id="navigation">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="about.html">About</a></li>
-                                                <li><a href="education.html">Education</a></li>
-                                                <li><a href="work.html">Work</a></li>
-                                                <li><a href="projects.html">Projects</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <!-- Submenu item not required
-                                                <li><a href="#">Page</a>
-                                                    <ul class="submenu">
-                                                        <li><a href="blog.html">Blog</a></li>
-                                                        <li><a href="blog_details.html">Blog Details</a></li>
-                                                        <li><a href="elements.html">Element</a></li>
-                                                        <li><a href="portfolio_details.html">Portfolio Details</a></li>
-                                                    </ul>
-                                                </li>
-                                                -->
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                    <!-- Big button not required
-                                    <div class="header-right-btn f-right d-none d-xl-block ml-20">
-                                        <a href="#" class="btn header-btn">Get Free Consultent</a>
-                                    </div>
-                                    -->
-                                </div>
-                            </div>   
-                            <!-- Mobile Menu -->
-                            <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-        <!-- Header End -->
-    </header>
-    <main>
+    <div class="photo-wrap reveal d2">
+      <img src="Images/profile.jpg" alt="Munish Taya" />
+    </div>
+  </div>
+</section>
 
-        <!-- slider Area Start-->
-        <div class="slider-area ">
-            <div class="slider-active">
-                <!-- Single Slider -->
-                <div class="single-slider slider-height d-flex align-items-center">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-8">
-                                <div class="hero__caption">
-                                    <span data-animation="fadeInUp" data-delay=".4s">Embedded Algorithm Design Engineer</span>
-                                    <h1 data-animation="fadeInUp" data-delay=".6s">Munish Taya</h1>
-                                    <P data-animation="fadeInUp" data-delay=".8s" >Somethings about me: Play soceer, basketball and board games. Work interests include communication, signal processing an dmachine learning</P>
-                                    <!-- Not needed
-                                    <! -- <div class="hero__btn">
-                                        <a href="industries.html" class="btn hero-btn"  data-animation="fadeInLeft" data-delay=".8s">Learn More</a>
-                                        <a href="industries.html" class="btn border-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">Hire Me</a>
-                                    </div>
-                                    -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- same code twice 
-                Single Slider 
-                <div class="single-slider slider-height d-flex align-items-center">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-8">
-                                <div class="hero__caption">
-                                    <span data-animation="fadeInUp" data-delay=".4s">Get Every Single Solutions.</span>
-                                    <h1 data-animation="fadeInUp" data-delay=".6s">I’m Designer Haris F. Watson</h1>
-                                    <P data-animation="fadeInUp" data-delay=".8s" >jhorem rfpsum golor sidt amet, consectetur adipiscing elit, eiusmod tempor incididunt utcjhg labore bet dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</P>
-                                    Hero-btn
-                                    <div class="hero__btn">
-                                        <a href="industries.html" class="btn hero-btn"  data-animation="fadeInLeft" data-delay=".8s">Learn More</a>
-                                        <a href="industries.html" class="btn border-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">Hire Me</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                -->
-            </div>
-        </div>
-        <!-- slider Area End-->
-        <!-- About Area start -->
-        <section class="about-area section-paddingt30">
-            <div class="container">
-                <div class="row ">
-                    <div class="col-lg-5">
-                        <div class="about-caption mb-50">
-                            <h3>Designing With Passion While Exploring The World.</h3>
-                            <p class="pera1">Electrical engioneer working on something blah blah.</p>
-                            <p>Other than work like playing soccer blah blah. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- About Area End -->
-        <!-- Categories Area Start -->
-        <section class="categories-area section-padding3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle mb-70">
-                            <h2>Want to know more about me!</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <a href="education.html">
-                        <div class="single-cat text-center mb-50">
-                            <div class="cat-icon">
-                                <span class="flaticon-pen"></span>
-                            </div>
-                            <div class="cat-cap">
-                                <h5>Education</h5>
-                                <p>My education details.</p>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <a href="projects.html">
-                        <div class="single-cat text-center mb-50">
-                            <div class="cat-icon">
-                                <span class="flaticon-speaker"></span>
-                            </div>
-                            <div class="cat-cap">
-                                <h5>Projects</h5>
-                                <p>Projects done mostly during academics.</p>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <a href="work.html">
-                        <div class="single-cat text-center mb-50">
-                            <div class="cat-icon">
-                                <span class="flaticon-portfolio"></span>
-                            </div>
-                            <div class="cat-cap">
-                                <h5>Work Experience</h5>
-                                <p>Work experience across companies.</p>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                 </div>
-            </div>
-        </section>
-        <!-- Services Area End -->
-        <!-- Want To Work Start -->
-        <section class="wantToWork-area w-padding2">
-            <div class="container">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-xl-6 col-lg-8 col-md-8">
-                        <div class="wantToWork-caption wantToWork-caption2">
-                            <h2>Any Type of Query and Discussion. <br> Let's Talk.</h2>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-md-3">
-                        <a href="contact.html" class="btn btn-black f-right">Contact Me Now</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Want To Work End -->
+<!-- STATS -->
+<div id="stats">
+  <div class="stats-grid">
+    <div class="reveal">
+      <div class="stat-num" data-target="11" data-suffix="+">0</div>
+      <div class="stat-lbl">Years of Experience</div>
+    </div>
+    <div class="reveal d1">
+      <div class="stat-num" data-target="2" data-suffix="">0</div>
+      <div class="stat-lbl">Graduate Degrees</div>
+    </div>
+    <div class="reveal d2">
+      <div class="stat-num" data-target="4" data-suffix="">0</div>
+      <div class="stat-lbl">Publications</div>
+    </div>
+    <div class="reveal d3">
+      <div class="stat-num" data-target="7" data-suffix="+">0</div>
+      <div class="stat-lbl">Projects</div>
+    </div>
+    <div class="reveal d4">
+      <div class="stat-num" data-target="4" data-suffix="">0</div>
+      <div class="stat-lbl">Courses Assisted</div>
+    </div>
+  </div>
+</div>
 
-        
-    </main>
-    <footer>
-        <!-- Footer Start-->
-        <div class="footer-area">
-            <div class="container">
-                <div class="footer-bottom">
-                    <div class="row d-flex justify-content-between align-items-center">
-                        <div class="col-xl-9 col-lg-8">
-                            <div class="footer-copy-right">
-                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4">
-                            <!-- Footer Social -->
-                            <div class="footer-social f-right">
-                                <a>Stay Connected</a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fas fa-globe"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-               </div>
-            </div>
-        </div>
-        <!-- Footer End-->
-    </footer>
-    <!-- Scroll Up -->
-    <div id="back-top" >
-        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="sec-inner">
+    <span class="sec-tag reveal">About me</span>
+    <h2 class="sec-title reveal">Engineer by training,<br /><span class="grad-text">explorer by nature.</span></h2>
+
+    <div class="quote-block reveal">
+      <p>"Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning."</p>
+      <cite>— Albert Einstein, the inspiration behind this journey</cite>
     </div>
 
-    <!-- JS here -->
-		<!-- All JS Custom Plugins Link Here here -->
-        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-		<!-- Jquery, Popper, Bootstrap -->
-		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="./assets/js/popper.min.js"></script>
-        <script src="./assets/js/bootstrap.min.js"></script>
-	    <!-- Jquery Mobile Menu -->
-        <script src="./assets/js/jquery.slicknav.min.js"></script>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>My fascination with signal processing began at <strong>BIT Mesra</strong>, when a lecture on Pulse Code Modulation and Time Division Multiplexing sparked something I couldn't ignore. I started asking questions that led me to research labs, design contests, and eventually graduate school.</p>
+        <p>After my third year I worked at <strong>IIT Patna</strong> studying underwater acoustic communication — MIMO, Alamouti codes, OFDM over Rayleigh and Rician fading channels. That hands-on research confirmed the direction I wanted to take.</p>
+        <p>I then spent two years at <strong>Verizon</strong>, joined <strong>Analog Devices</strong> to build signal processing algorithms for wide-band RF transceivers and automotive radar, and now at <strong>Apple</strong> I define 5G NR RF transmitter specifications and investigate 3GPP features shaping the next generation of wireless.</p>
+        <p>I hold an <strong>MSc in Electrical &amp; Computer Engineering</strong> from Northeastern University (GPA 3.76/4.0), a <strong>B.E in Electronics &amp; Communication</strong> from Birla Institute of Technology (GPA 8.15/10), and completed my 12th in Science at <strong>Narayna Junior College, Secunderabad</strong> (2008–2010).</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar reveal d1">
+          <div class="pillar-icon">📶</div>
+          <h4>5G NR &amp; Wireless Standards</h4>
+          <p>Defining RF transmitter specs and 3GPP feature feasibility at Apple for next-gen wireless systems.</p>
+        </div>
+        <div class="pillar reveal d2">
+          <div class="pillar-icon">📡</div>
+          <h4>RF &amp; Signal Processing</h4>
+          <p>Adaptive calibration algorithms for wide-band transceivers — quadrature error, path delay, Kalman-based noise cancellation.</p>
+        </div>
+        <div class="pillar reveal d3">
+          <div class="pillar-icon">🚗</div>
+          <h4>Radar &amp; Sensing</h4>
+          <p>FMCW radar signal chains for autonomous vehicles with Monte Carlo simulation frameworks.</p>
+        </div>
+        <div class="pillar reveal d4">
+          <div class="pillar-icon">🌊</div>
+          <h4>Acoustic Communications</h4>
+          <p>Real-data OFDM analysis of underwater channels — IEEE published at OCEANS 2018.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-		<!-- Jquery Slick , Owl-Carousel Plugins -->
-        <script src="./assets/js/owl.carousel.min.js"></script>
-        <script src="./assets/js/slick.min.js"></script>
-		<!-- One Page, Animated-HeadLin -->
-        <script src="./assets/js/wow.min.js"></script>
-		<script src="./assets/js/animated.headline.js"></script>
-        <script src="./assets/js/jquery.magnific-popup.js"></script>
+<!-- EXPERIENCE -->
+<section id="experience" class="sec">
+  <div class="sec-inner">
+    <span class="sec-tag reveal">Career</span>
+    <h2 class="sec-title reveal">Where I've<br /><span class="grad-text">made an impact.</span></h2>
+    <p class="sec-sub reveal">Over a decade of turning signal theory into real-world systems across three countries.</p>
+    <div class="timeline">
 
-		<!-- Nice-select, sticky -->
-        <script src="./assets/js/jquery.nice-select.min.js"></script>
-		<script src="./assets/js/jquery.sticky.js"></script>
-        
-        <!-- contact js -->
-        <script src="./assets/js/contact.js"></script>
-        <script src="./assets/js/jquery.form.js"></script>
-        <script src="./assets/js/jquery.validate.min.js"></script>
-        <script src="./assets/js/mail-script.js"></script>
-        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
-        
-		<!-- Jquery Plugins, main Jquery -->	
-        <script src="./assets/js/plugins.js"></script>
-        <script src="./assets/js/main.js"></script>
-        
-    </body>
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div>
+              <div class="tl-company">Apple · Massachusetts, USA</div>
+              <div class="tl-role">5G NR Systems Engineer</div>
+            </div>
+            <span class="tl-date">Apr 2022 – Present</span>
+          </div>
+          <ul>
+            <li>Define systems design specifications for the 5G NR RF transmitter.</li>
+            <li>Investigate relevant 3GPP features and formulate feasibility studies for next-generation wireless.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal d1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div>
+              <div class="tl-company">Analog Devices Inc. · Massachusetts, USA</div>
+              <div class="tl-role">Embedded Algorithm Design Engineer</div>
+            </div>
+            <span class="tl-date">Jul 2018 – Apr 2022</span>
+          </div>
+          <ul>
+            <li>Designed and implemented adaptive statistical signal processing algorithms in wide-band RF Transceiver products.</li>
+            <li>Derived mathematical models for system calibration algorithms and simulated them in MATLAB.</li>
+            <li>Algorithms focused on Quadrature Error correction, Path delay estimation, and active Noise Cancellation with real-time tracking using a Kalman filter framework.</li>
+            <li>Implemented calibration firmware directly in Embedded C.</li>
+            <li>Defined system-level architecture, coordinating hardware and software teams to specify implementation details and support system-level debug.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal d2">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div>
+              <div class="tl-company">Analog Devices Inc. · Massachusetts, USA</div>
+              <div class="tl-role">Intern — FMCW Radar Signal Processing</div>
+            </div>
+            <span class="tl-date">May 2017 – Dec 2017</span>
+          </div>
+          <ul>
+            <li>Analyzed existing and in-development processors using competitive benchmarking analysis.</li>
+            <li>Implemented and optimized an FMCW Radar Signal Chain for autonomous vehicles.</li>
+            <li>Built a Monte Carlo simulation framework to analyze radar performance metrics including false alarm rate and miss detection probability.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal d3">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div>
+              <div class="tl-company">Northeastern University · Boston, MA</div>
+              <div class="tl-role">Course Assistant</div>
+            </div>
+            <span class="tl-date">Sep 2016 – Apr 2018</span>
+          </div>
+          <ul>
+            <li>EECE 2560 — Fundamentals of Engineering Algorithms using C++ (Undergraduate, Fall 2016)</li>
+            <li>EECE 5564 — Biomedical Signal Processing (Graduate, Spring 2017)</li>
+            <li>EECE 5666 — Digital Signal Processing (Undergraduate, Spring 2018)</li>
+            <li>EECE 5XXX — Wireless Communication (Graduate, Spring 2018)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal d4">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div>
+              <div class="tl-company">Verizon Data Services India Pvt. Ltd. · Hyderabad, India</div>
+              <div class="tl-role">Analyst System Developer <span class="tl-promo">Promoted</span></div>
+            </div>
+            <span class="tl-date">Jun 2014 – Jul 2016</span>
+          </div>
+          <ul>
+            <li>Started as Software Engineer; promoted to Analyst System Developer within the first year for efficiency and hard work.</li>
+            <li>Built the <em style="color:var(--text);font-style:normal;font-weight:600;">Prepaid Reference Data System</em> for the wireless prepaid Revenue Assurance team — analysing cost-to-network and proposing optimal prepaid plans for company profitability.</li>
+            <li>Developed Java web applications using Spring architecture with RESTful web services.</li>
+            <li>Created data visualizations using jQuery and JavaScript to analyze and compare prepaid plans and their dependencies.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="sec">
+  <div class="sec-inner">
+    <span class="sec-tag reveal">Toolkit</span>
+    <h2 class="sec-title reveal">What I<br /><span class="grad-text">work with.</span></h2>
+    <div class="skill-groups">
+      <div class="skill-group reveal">
+        <div class="sg-title">Languages</div>
+        <div class="tags">
+          <span class="tag">MATLAB</span>
+          <span class="tag">Python</span>
+          <span class="tag">C / C++</span>
+          <span class="tag">Embedded C</span>
+          <span class="tag">Java</span>
+          <span class="tag">Android</span>
+          <span class="tag">LaTeX</span>
+        </div>
+      </div>
+      <div class="skill-group reveal d1">
+        <div class="sg-title">Domains</div>
+        <div class="tags">
+          <span class="tag">5G NR</span>
+          <span class="tag">3GPP</span>
+          <span class="tag">Signal Processing</span>
+          <span class="tag">RF Systems</span>
+          <span class="tag">FMCW Radar</span>
+          <span class="tag">OFDM</span>
+          <span class="tag">MIMO</span>
+          <span class="tag">Kalman Filter</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Acoustic Comms</span>
+        </div>
+      </div>
+      <div class="skill-group reveal d2">
+        <div class="sg-title">Tools &amp; Platforms</div>
+        <div class="tags">
+          <span class="tag">Linux</span>
+          <span class="tag">NS3</span>
+          <span class="tag">Spring Framework</span>
+          <span class="tag">RESTful APIs</span>
+          <span class="tag">jQuery</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">NI LabVIEW</span>
+          <span class="tag">Git</span>
+        </div>
+      </div>
+      <div class="skill-group reveal d3">
+        <div class="sg-title">Languages</div>
+        <div class="tags">
+          <span class="tag">English — Native</span>
+          <span class="tag">Hindi — Native</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="sec">
+  <div class="sec-inner">
+    <span class="sec-tag reveal">Certifications</span>
+    <h2 class="sec-title reveal">Continuous<br /><span class="grad-text">learning.</span></h2>
+    <p class="sec-sub reveal">Formal certifications pursued to deepen the mathematical foundations behind the work.</p>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon">📐</div>
+        <div>
+          <h4>Mathematics for Machine Learning: Linear Algebra</h4>
+          <p>Coursera / Imperial College London</p>
+        </div>
+      </div>
+      <div class="cert-card reveal d1">
+        <div class="cert-icon">📊</div>
+        <div>
+          <h4>Mathematics for Machine Learning: Multivariate Calculus</h4>
+          <p>Coursera / Imperial College London</p>
+        </div>
+      </div>
+      <div class="cert-card reveal d2">
+        <div class="cert-icon">🎲</div>
+        <div>
+          <h4>Probability — The Science of Uncertainty and Data</h4>
+          <p>edX Verified Certificate / MITx</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" class="sec">
+  <div class="sec-inner">
+    <span class="sec-tag reveal">Research</span>
+    <h2 class="sec-title reveal">Pushing the<br /><span class="grad-text">boundaries of theory.</span></h2>
+    <div class="research-grid">
+
+      <div class="r-card reveal">
+        <span class="badge">Northeastern · CDSP Center</span>
+        <h3>Acoustic Communications &amp; OFDM — Time-Varying Channels</h3>
+        <div class="org">Boston, MA &nbsp;·&nbsp; Jan 2017 – Jun 2018</div>
+        <ul>
+          <li>Led project "Multi-FFT detection of OFDM signals in time-varying channels."</li>
+          <li>Analyzed Partial FFT demodulation with coherent detection on real signals from the 2010 Mobile Acoustic Communications Experiment.</li>
+          <li>Implemented super-resolution Matching Pursuit and Least Squares for sparse channel estimation.</li>
+          <li>Work led to an IEEE publication at OCEANS 2018 Charleston and a UComms 2021 paper.</li>
+        </ul>
+      </div>
+
+      <div class="r-card reveal d1">
+        <span class="badge">IIT Patna · Summer Research Intern</span>
+        <h3>Low-Cost Experimental Setup for Underwater Acoustic Communication</h3>
+        <div class="org">Patna, India &nbsp;·&nbsp; May – Jul 2013</div>
+        <ul>
+          <li>Studied MIMO, Alamouti Code and OFDM in depth for underwater wireless communication.</li>
+          <li>Simulated OFDM wireless communication over Rayleigh and Rician Fading Channels in MATLAB using multiple approaches.</li>
+          <li>Findings formed the foundation of the undergraduate final year project at BIT Mesra.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GRADUATE PROJECTS -->
+<section id="projects" class="sec">
+  <div class="sec-inner">
+    <span class="sec-tag reveal">Graduate Projects</span>
+    <h2 class="sec-title reveal">Built at<br /><span class="grad-text">Northeastern.</span></h2>
+    <p class="sec-sub reveal">Applied research translated into working systems during the MSc program (2016–2018).</p>
+    <div class="proj-grid">
+
+      <div class="proj-card reveal">
+        <div class="proj-num">01</div>
+        <h3>Wireless NeuroDot Sensor</h3>
+        <div class="proj-org">Northeastern University &nbsp;·&nbsp; Oct 2016 – Apr 2017</div>
+        <ul>
+          <li>Developed an Android app to acquire EEG data from a Teensy microcontroller via serial communication.</li>
+          <li>Streamed data in real-time over socket communication to a server for further EEG signal processing.</li>
+          <li>Part of a broader neuro-optical diagnostics platform — connected to the Military Medicine 2019 publication.</li>
+        </ul>
+      </div>
+
+      <div class="proj-card reveal d1">
+        <div class="proj-num">02</div>
+        <h3>Track Prediction — Kalman Filter, KNN &amp; RNN-LSTM</h3>
+        <div class="proj-org">Northeastern University &nbsp;·&nbsp; Nov 2016</div>
+        <ul>
+          <li>Predicted object positions in future video frames using historical position data.</li>
+          <li>Implemented Kalman Filter and K-Nearest Neighbors in Python.</li>
+          <li>Built Recurrent Neural Network with LSTM cell and fully connected output layer.</li>
+          <li>Trained and benchmarked all three models on the KITTI autonomous-driving dataset.</li>
+        </ul>
+      </div>
+
+      <div class="proj-card reveal d2">
+        <div class="proj-num">03</div>
+        <h3>Multi-Cell / AP Network Performance in Wi-Fi &amp; LTE</h3>
+        <div class="proj-org">Northeastern University &nbsp;·&nbsp; Nov 2016</div>
+        <ul>
+          <li>Simulated Wi-Fi and LTE networks in NS3 to analyze performance under varying user mobility and user density scenarios.</li>
+          <li>Evaluated network throughput, latency, and handoff behaviour across both standards.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- UNDERGRADUATE PROJECTS -->
+<section id="undergrad-projects" class="sec">
+  <div class="sec-inner">
+    <span class="sec-tag reveal">Undergraduate Projects</span>
+    <h2 class="sec-title reveal">Where it all<br /><span class="grad-text">began.</span></h2>
+    <p class="sec-sub reveal">Projects from BIT Mesra (2010–2014) that shaped the engineer and researcher I became.</p>
+    <div class="proj-grid">
+
+      <div class="proj-card reveal">
+        <div class="proj-award">🏆 Full Project Credits</div>
+        <div class="proj-num">01</div>
+        <h3>Underwater Acoustic Communication — Experimental Setup</h3>
+        <div class="proj-org">BIT Mesra — Final Year Group Project &nbsp;·&nbsp; 2013–2014</div>
+        <ul>
+          <li>Built a cost-effective, repeatable experimental setup for underwater acoustic communication — an alternative to ocean-based experiments.</li>
+          <li>Analysed MIMO and DFT-spread OFDM, comparing practical results with earlier simulated data from IIT Patna.</li>
+          <li>Results verified theoretical channel estimation for underwater acoustic communication.</li>
+          <li>Report "Study of Underwater Communication System" was awarded full project credits.</li>
+        </ul>
+      </div>
+
+      <div class="proj-card reveal d1">
+        <div class="proj-award">🏆 Texas Analog Design Contest 2012–13</div>
+        <div class="proj-num">02</div>
+        <h3>Automatic Trolley</h3>
+        <div class="proj-org">BIT Mesra &nbsp;·&nbsp; 2012–2013</div>
+        <ul>
+          <li>Designed an autonomous trolley for people who have difficulty manually controlling one.</li>
+          <li>Used Infrared Beacon transceiver and PIR sensor with antenna radiation patterns to follow the correct person at a fixed distance.</li>
+          <li>Integrated collision-avoidance sensors for safe operation in crowded spaces.</li>
+          <li>Proposed for the Texas Analog Design Contest 2012–2013.</li>
+        </ul>
+      </div>
+
+      <div class="proj-card reveal d2">
+        <div class="proj-award">🏆 Presented at NI Vimantra '12</div>
+        <div class="proj-num">03</div>
+        <h3>Automatic Headlight Intensity Adjustment</h3>
+        <div class="proj-org">BIT Mesra &nbsp;·&nbsp; 2012</div>
+        <ul>
+          <li>Devised a road-safety system to automatically adjust vehicle headlight intensity using image processing.</li>
+          <li>Implemented with a National Instruments smart camera and MATLAB.</li>
+          <li>Presented at the National Instruments event, Vimantra '12.</li>
+        </ul>
+      </div>
+
+      <div class="proj-card reveal d3">
+        <div class="proj-award">🏆 Presented at Technika '12</div>
+        <div class="proj-num">04</div>
+        <h3>SIM-Free Devices</h3>
+        <div class="proj-org">BIT Mesra &nbsp;·&nbsp; 2012</div>
+        <ul>
+          <li>Conceived the idea while studying GSM architecture during a PCM-TDM lecture — the spark that ignited the passion for wireless communications.</li>
+          <li>Researched and refined the concept of SIM-free mobile device connectivity.</li>
+          <li>Presented a technical paper at the college technical festival, Technika '12.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" class="sec">
+  <div class="sec-inner">
+    <span class="sec-tag reveal">Publications</span>
+    <h2 class="sec-title reveal">Peer-reviewed<br /><span class="grad-text">work.</span></h2>
+    <div class="pub-list">
+
+      <div class="pub-card reveal">
+        <div class="pub-icon">📄</div>
+        <div>
+          <span class="pub-badge">Military Medicine · 2019</span>
+          <h3>Portable System for Neuro-Optical Diagnostics Using Virtual Reality Display</h3>
+          <p>Versek, C., Rissmiller, A., Tran, A., Taya, M., Chowdhury, K., Bex, P., &amp; Sridhar, S. <em>Military Medicine</em>, 184(Supplement_1), 584–592. 2019.</p>
+          <span class="pub-citations">28 citations</span>
+        </div>
+      </div>
+
+      <div class="pub-card reveal d1">
+        <div class="pub-icon">📄</div>
+        <div>
+          <span class="pub-badge">IEEE · UComms 2021</span>
+          <h3>On Mitigating Channel Time Variation Effect in Acoustic OFDM Systems</h3>
+          <p>Tadayon, A., Taya, M., &amp; Stojanovic, M. <em>2021 Fifth Underwater Communications and Networking Conference (UComms)</em>. IEEE, 2021.</p>
+        </div>
+      </div>
+
+      <div class="pub-card reveal d2">
+        <div class="pub-icon">📄</div>
+        <div>
+          <span class="pub-badge">IEEE · OCEANS 2018 · Charleston</span>
+          <h3>Mobile Acoustic Communications: Real Data Analysis of Partial FFT Demodulation with Coherent Detection</h3>
+          <p>Taya, M., Tadayon, A., &amp; Stojanovic, M. <em>OCEANS 2018 MTS/IEEE Charleston</em>. IEEE, 2018.</p>
+          <span class="pub-citations">4 citations</span>
+        </div>
+      </div>
+
+      <div class="pub-card reveal d3">
+        <div class="pub-icon">🎓</div>
+        <div>
+          <span class="pub-badge">MSc Thesis · Northeastern University · 2018</span>
+          <h3>Multi-Carrier Communication over Time-Varying Underwater Acoustic Channels</h3>
+          <p>Taya, M. <em>MSc Dissertation</em>, Northeastern University. 2018.</p>
+          <span class="pub-citations">1 citation</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BEYOND THE CODE -->
+<section id="beyond" class="sec">
+  <div class="sec-inner">
+    <span class="sec-tag reveal">Beyond the code</span>
+    <h2 class="sec-title reveal">Life outside<br /><span class="grad-text">the lab.</span></h2>
+
+    <div class="personal-intro reveal">
+      <p>Work is what I do — this is who I am. Outside of signal equations and 3GPP specs, I'm an <strong>active, outdoorsy person</strong> with a pretty chill, zen attitude toward life. I love being in motion — whether that's chasing a ball on the soccer pitch, hiking up a trail with friends, setting up camp under the stars, or landing in a city I've never been to before. I'm always curious, always learning something new, and I genuinely believe life's too short not to enjoy the ride.</p>
+    </div>
+
+    <!-- Photo mosaic -->
+    <div class="photo-mosaic reveal">
+
+      <!-- Row 1: wide hero + tall portrait -->
+      <div class="photo-item wide">
+        <img src="Images/IMG_4670.jpg" alt="Manchester City at the Etihad" style="object-position: center 28%;" />
+        <div class="photo-caption"><span>⚽ Etihad Stadium — Man City vs Man United</span></div>
+      </div>
+      <div class="photo-item tall">
+        <img src="Images/IMG_4235.jpg" alt="Golden sunset canal" />
+        <div class="photo-caption"><span>🌅 Somewhere beautiful — just soaking it in</span></div>
+      </div>
+
+      <!-- Row 2: two portraits (fill next to tall) -->
+      <div class="photo-item">
+        <img src="Images/IMG_3915.jpg" alt="Old Trafford Manchester United" />
+        <div class="photo-caption"><span>🏟️ Old Trafford — standing on the pitch</span></div>
+      </div>
+      <div class="photo-item">
+        <img src="Images/74743A11-3BAF-4937-B011-B80A92E305A0.JPG" alt="Outdoors in winter" />
+        <div class="photo-caption"><span>❄️ Happy in the cold — any weather works</span></div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="photo-item">
+        <img src="Images/IMG_3205.jpg" alt="Edinburgh Scotland" />
+        <div class="photo-caption"><span>🏰 Edinburgh, Scotland</span></div>
+      </div>
+      <div class="photo-item">
+        <img src="Images/IMG_3576.jpg" alt="Edinburgh street" />
+        <div class="photo-caption"><span>🗺️ Exploring the Royal Mile</span></div>
+      </div>
+      <div class="photo-item">
+        <img src="Images/IMG_3695.JPG" alt="Helicopter adventure" />
+        <div class="photo-caption"><span>🚁 Always up for something new</span></div>
+      </div>
+
+    </div>
+
+    <!-- Interest / vibe cards -->
+    <div class="interests-grid">
+      <div class="interest-card reveal">
+        <span class="i-icon">⚽</span>
+        <h4>Soccer</h4>
+        <p>The beautiful game. I play regularly and never miss a big match. Old Trafford and the Etihad — been to both.</p>
+      </div>
+      <div class="interest-card reveal d1">
+        <span class="i-icon">🥾</span>
+        <h4>Hiking</h4>
+        <p>Give me a trail, good company, and a view at the top. Some of my best days have been on a mountain path with friends.</p>
+      </div>
+      <div class="interest-card reveal d2">
+        <span class="i-icon">🏕️</span>
+        <h4>Camping</h4>
+        <p>Off the grid, under the stars. There's something deeply refreshing about stepping away from screens and into nature.</p>
+      </div>
+      <div class="interest-card reveal d3">
+        <span class="i-icon">✈️</span>
+        <h4>Travel</h4>
+        <p>Scotland, Europe, wherever the next trip takes me — I love immersing in new cultures, food, and places.</p>
+      </div>
+      <div class="interest-card reveal d4">
+        <span class="i-icon">📖</span>
+        <h4>Always Learning</h4>
+        <p>Whether it's a new certification, a new sport, or a random rabbit hole — curiosity is just how I'm wired.</p>
+      </div>
+      <div class="interest-card reveal d1">
+        <span class="i-icon">🧘</span>
+        <h4>Zen Mode</h4>
+        <p>Happy and chill is the vibe. I don't stress the small stuff — life's better when you're present in it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="sec">
+  <div class="sec-inner">
+    <span class="sec-tag reveal">Education</span>
+    <h2 class="sec-title reveal">The foundation<br /><span class="grad-text">of everything.</span></h2>
+    <div class="timeline">
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div>
+              <div class="tl-company">Northeastern University · Boston, MA</div>
+              <div class="tl-role">Master of Science — Electrical, Electronics &amp; Communications Engineering</div>
+            </div>
+            <span class="tl-date">Sep 2016 – Jun 2018</span>
+          </div>
+          <ul>
+            <li>GPA: 3.76 / 4.0</li>
+            <li>Courses: Applied Probability &amp; Stochastic Process, Machine Learning, Mobile &amp; Wireless Networking, Wireless Communication, Advance Network Management, Modern Signal Processing.</li>
+            <li>Research at the CDSP Center under Prof. Milica Stojanovic — led to two IEEE publications.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal d1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div>
+              <div class="tl-company">Birla Institute of Technology · Mesra, India</div>
+              <div class="tl-role">Bachelor of Engineering — Electronics &amp; Communication Engineering</div>
+            </div>
+            <span class="tl-date">Jun 2010 – Jun 2014</span>
+          </div>
+          <ul>
+            <li>GPA: 8.15 / 10</li>
+            <li>Final year project on underwater acoustic communication awarded full project credits.</li>
+            <li>Presented at Technika '12, Vimantra '12 (National Instruments), and Texas Analog Design Contest 2012–13.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal d2">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div>
+              <div class="tl-company">Narayna Junior College · Secunderabad, India</div>
+              <div class="tl-role">12th Class — Science</div>
+            </div>
+            <span class="tl-date">2008 – 2010</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <span class="sec-tag reveal" style="display:block;margin-bottom:0.5rem;">Contact</span>
+    <h2 class="sec-title reveal">Let's <span class="grad-text">connect.</span></h2>
+    <p class="reveal">Whether it's a collaboration, an opportunity, or just a conversation about signal processing — my inbox is always open.</p>
+    <div class="chips reveal">
+      <a href="https://www.linkedin.com/in/munishtaya-58171451" class="chip" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:munishtaya1603@gmail.com" class="chip">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        munishtaya1603@gmail.com
+      </a>
+      <a href="doc/mTayaResume.pdf" class="chip" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        View Resume
+      </a>
+    </div>
+    <div class="foot reveal">Designed &amp; built with care &nbsp;·&nbsp; Wilmington, MA &nbsp;·&nbsp; 2026</div>
+  </div>
+</section>
+
+<script>
+  /* Navbar */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 50), { passive: true });
+
+  /* Scroll reveal */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  document.querySelectorAll('#hero .reveal, #stats .reveal').forEach(el => {
+    setTimeout(() => el.classList.add('on'), 120);
+  });
+
+  /* Typewriter */
+  const phrases = [
+    '5G NR Systems Engineer at Apple.',
+    'Signal Processing Specialist.',
+    'RF & Radar Algorithm Developer.',
+    'IEEE Published Researcher.',
+    'MSc · Northeastern University.',
+    'Based in Wilmington, MA.',
+  ];
+  let pi = 0, ci = 0, del = false;
+  const typed = document.getElementById('typed');
+  function tick() {
+    const p = phrases[pi];
+    typed.textContent = del ? p.slice(0, --ci) : p.slice(0, ++ci);
+    if (!del && ci === p.length) { del = true; setTimeout(tick, 1800); return; }
+    if (del && ci === 0) { del = false; pi = (pi + 1) % phrases.length; }
+    setTimeout(tick, del ? 42 : 78);
+  }
+  setTimeout(tick, 900);
+
+  /* Count-up */
+  const cntObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.target, suffix = el.dataset.suffix || '';
+      let n = 0;
+      const step = Math.max(1, Math.ceil(target / 25));
+      const t = setInterval(() => { n = Math.min(n + step, target); el.textContent = n + suffix; if (n >= target) clearInterval(t); }, 55);
+      cntObs.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.stat-num').forEach(el => cntObs.observe(el));
+</script>
+</body>
 </html>
